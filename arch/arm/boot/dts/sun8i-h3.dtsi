@@ -82,6 +82,13 @@
 			reg = <3>;
 		};
 	};
+       thermal-zones {
+               cpu_thermal: cpu_thermal {
+                       polling-delay-passive = <1000>;
+                       polling-delay = <5000>;
+                       thermal-sensors = <&ths 0>;
+               };
+       };
 
 	timer {
 		compatible = "arm,armv7-timer";
@@ -409,6 +416,16 @@
 			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
 		};
 
+               ths: ths@01c25000 {
+                       #thermal-sensor-cells = <0>;
+                       compatible = "allwinner,sun8i-h3-ths";
+                       reg = <0x01c25000 0x88>;
+                       interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+                       clocks = <&ccu CLK_THS>;
+                       resets = <&ccu RST_BUS_THS>;
+}
+
+
 		uart0: serial@01c28000 {
 			compatible = "snps,dw-apb-uart";
 			reg = <0x01c28000 0x400>;
@@ -528,5 +545,6 @@
 				allwinner,pull = <SUN4I_PINCTRL_NO_PULL>;
 			};
 		};
+
 	};
 };
