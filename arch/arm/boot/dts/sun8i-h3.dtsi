@@ -421,9 +421,9 @@
                        compatible = "allwinner,sun8i-h3-ths";
                        reg = <0x01c25000 0x88>;
                        interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-                       clocks = <&ccu CLK_THS>;
+                       clocks = <&ccu CLK_BUS_THS>;
                        resets = <&ccu RST_BUS_THS>;
-}
+		};
 
 
 		uart0: serial@01c28000 {
